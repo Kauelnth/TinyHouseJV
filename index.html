@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tiny House 24 — projeto compacto, moderno e funcional." id="meta-description">
+<title>Tiny House  | Viva o essencial</title>
+
+<style>
+:root {
+  --ink:#252b23;
+  --muted:#6e7469;
+  --cream:#f4f0e8;
+  --paper:#fffdf8;
+  --olive:#687b55;
+  --dark:#43543a;
+  --line:#e8e1d6;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.6
+}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(244,240,232,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+.nav{
+  min-height:76px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px
+}
+.brand{font-weight:800;letter-spacing:-.04em;font-size:1.1rem}
+.brand span{color:var(--olive)}
+.navlinks{display:flex;gap:24px;font-size:.9rem;color:#555d50}
+.navlinks a:hover{color:var(--olive)}
+.language-switch{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.lang-btn{
+  border:0;background:transparent;color:#777d70;
+  padding:8px 7px;border-radius:7px;cursor:pointer;font-weight:800
+}
+.lang-btn.active{color:var(--dark);background:#e5eadf}
+.btn,.nav-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--dark);color:white;border:0;border-radius:40px;
+  padding:13px 21px;font-weight:bold;cursor:pointer;transition:.2s
+}
+.btn:hover,.nav-cta:hover{background:#293b25;transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;border:1px solid #aaa995;
+  border-radius:40px;padding:12px 21px;font-weight:bold
+}
+.btn-outline:hover{background:white}
+.menu{display:none;background:none;border:0;font-size:25px;cursor:pointer}
+.eyebrow{
+  color:var(--olive);font-size:12px;font-weight:bold;
+  letter-spacing:3px;text-transform:uppercase
+}
+h1,h2{font-family:Georgia,serif;font-weight:normal;line-height:1.1}
+h1{font-size:clamp(48px,7vw,85px);margin:20px 0}
+h1 em{color:var(--olive)}
+h2{font-size:clamp(34px,5vw,54px);margin:15px 0}
+p{color:var(--muted)}
+section{padding:85px 0}
+.hero{padding:75px 0}
+.hero-grid{
+  display:grid;grid-template-columns:.92fr 1.08fr;
+  align-items:center;gap:48px
+}
+.hero-copy>p{font-size:18px;max-width:490px}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:28px}
+.hero-note{display:flex;gap:25px;margin-top:35px;color:var(--muted);font-size:13px}
+.hero-note strong{display:block;color:var(--ink);font-size:20px}
+.hero-visual{position:relative}
+.hero-visual:before{
+  content:"";position:absolute;inset:9% -5% -5% 12%;
+  background:#e3d8c8;border-radius:48% 42% 20% 30%;
+  z-index:-1;transform:rotate(-4deg)
+}
+.plan-frame{
+  background:white;padding:12px;border-radius:22px;
+  box-shadow:0 20px 55px #3332;transform:rotate(1deg)
+}
+.plan-frame img{width:100%;display:block;border-radius:14px}
+.image-caption{
+  display:flex;justify-content:space-between;gap:10px;
+  padding:12px 5px 2px;color:var(--muted);font-size:12px
+}
+.stats{background:var(--dark);color:white;padding:28px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.stat{padding:5px 18px;border-right:1px solid #ffffff44}
+.stat:last-child{border:0}
+.stat strong{display:block;font:32px Georgia,serif}
+.stat span{font-size:13px;color:#dce2d7}
+.section-head{max-width:700px;margin-bottom:35px}
+.section-head p{max-width:650px}
+.features{background:var(--paper)}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{
+  background:#f7f4ed;border:1px solid var(--line);
+  border-radius:18px;padding:25px;min-height:200px
+}
+.feature-icon{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;background:#e5eadf;
+  color:var(--dark);font-size:22px;margin-bottom:15px
+}
+.feature h3{margin:0 0 8px}
+.feature p{font-size:14px;margin:0}
+.video-showcase{background:var(--cream)}
+.video-shell{
+  max-width:920px;margin:auto;padding:10px;
+  border-radius:22px;background:#222
+}
+.video-shell video{
+  width:100%;display:block;border-radius:15px;
+  max-height:650px;background:#111
+}
+.video-caption{text-align:center;font-size:13px}
+.floorplan-section{background:var(--paper)}
+.floorplan-frame{
+  max-width:1100px;margin:auto;padding:12px;
+  background:var(--cream);border-radius:22px;
+  box-shadow:0 18px 50px #3332
+}
+.floorplan-frame img{width:100%;height:auto;display:block;border-radius:14px}
+.floorplan-note{text-align:center;font-size:13px;margin-top:15px}
+.layout-grid,.highlight-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:50px
+}
+.layout-card{background:#e8dfd2;padding:15px;border-radius:22px}
+.layout-card img{width:100%;display:block;border-radius:14px}
+.room-list{display:grid;gap:20px;margin-top:25px}
+.room{display:flex;gap:15px}
+.room-num{
+  width:38px;height:38px;flex-shrink:0;
+  display:grid;place-items:center;border-radius:50%;
+  background:var(--olive);color:white;font-weight:bold
+}
+.room h3{margin:0 0 4px;font-size:16px}
+.room p{margin:0;font-size:14px}
+.highlight{background:#e8e1d5}
+.checks{list-style:none;padding:0;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:center;font-weight:bold}
+.check{
+  width:24px;height:24px;flex-shrink:0;border-radius:50%;
+  background:var(--olive);color:white;display:grid;place-items:center
+}
+.quote-card{
+  background:var(--paper);border-radius:22px;padding:35px;
+  box-shadow:0 15px 40px #3332
+}
+.quote-card blockquote{font:italic 25px/1.4 Georgia,serif;margin:0 0 18px}
+.cta{background:var(--dark);color:white;text-align:center}
+.cta h2{max-width:750px;margin:18px auto}
+.cta p{color:#dce2d7;max-width:600px;margin:0 auto 28px}
+.cta .eyebrow{color:#dce2d7}
+.cta .btn{background:var(--cream);color:var(--dark)}
+footer{padding:30px 0;color:var(--muted);font-size:13px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.disclaimer{max-width:700px}
+
+/* WHATSAPP FLUTUANTE */
+.whatsapp-float{
+  position:fixed;right:25px;bottom:25px;z-index:9999;
+  width:62px;height:62px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;
+  justify-content:center;box-shadow:0 5px 20px #0004;transition:.2s
+}
+.whatsapp-float:hover{background:#1ebe5d;transform:scale(1.08)}
+.whatsapp-float svg{width:34px;height:34px;fill:white}
+.whatsapp-tooltip{
+  position:absolute;right:74px;background:white;color:#333;
+  padding:8px 12px;border-radius:8px;font-size:12px;
+  white-space:nowrap;box-shadow:0 3px 12px #0002;
+  opacity:0;pointer-events:none;transition:.2s
+}
+.whatsapp-float:hover .whatsapp-tooltip{opacity:1}
+
+@media(max-width:850px){
+  .hero-grid,.layout-grid,.highlight-grid{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border:0}
+  .navlinks{display:none}
+  .menu{display:block}
+  .navlinks.open{
+    display:flex;position:absolute;top:100%;left:0;right:0;
+    background:var(--cream);padding:20px;
+    flex-direction:column;border-bottom:1px solid var(--line)
+  }
+}
+@media(max-width:540px){
+  section{padding:60px 0}
+  .hero{padding:45px 0}
+  .feature-grid{grid-template-columns:1fr}
+  .stats-grid{gap:12px}
+  .stat{padding:5px 8px}
+  .stat strong{font-size:25px}
+  .hero-note{gap:15px}
+  .nav{min-height:66px;flex-wrap:wrap;padding:9px 0}
+  .brand{font-size:1rem}
+  .language-switch{margin-left:auto}
+  .nav-cta{padding:10px 13px;font-size:12px}
+  .whatsapp-float{width:57px;height:57px;right:17px;bottom:17px}
+  .whatsapp-float svg{width:31px;height:31px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio">TINY HOUSE <span>24</span></a>
+
+    <nav class="navlinks" id="navlinks">
+      <a href="#projeto" data-i18n="navProject">O projeto</a>
+      <a href="#video" data-i18n="navVideo">Vídeo</a>
+      <a href="#planta" data-i18n="navPlan">Planta</a>
+      <a href="#ambientes" data-i18n="navSpaces">Ambientes</a>
+      <a href="#diferenciais" data-i18n="navFeatures">Diferenciais</a>
+    </nav>
+
+    <div class="language-switch" aria-label="Selecionar idioma">
+      <button class="lang-btn active" type="button" data-lang="pt">PT-BR</button>
+      <span>|</span>
+      <button class="lang-btn" type="button" data-lang="en">EN</button>
+    </div>
+
+    <a class="nav-cta" id="header-cta" href="#" target="_blank" rel="noopener">
+      Tenho interesse ↗
+    </a>
+
+    <button class="menu" aria-label="Abrir menu"
+      onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-i18n="heroEyebrow">Morar bem • viver leve</span>
+      <h1 data-i18n-html="heroTitle">Menos espaço.<br><em>Mais vida.</em></h1>
+      <p data-i18n="heroText">Uma casa compacta, acolhedora e inteligente. Cada ambiente foi pensado para aproveitar o espaço sem abrir mão do conforto.</p>
+
+      <div class="hero-actions">
+        <a class="btn" id="hero-whatsapp" href="#" target="_blank" rel="noopener" data-i18n="heroButton">Quero saber mais →</a>
+        <a class="btn-outline" href="#projeto" data-i18n="heroExplore">Conheça o projeto</a>
+      </div>
+
+      <div class="hero-note">
+        <div><strong>24 m²</strong><span data-i18n="statArea">Área total</span></div>
+        <div><strong>8 × 3 m</strong><span data-i18n="statDimensions">Dimensões</span></div>
+        <div><strong>4</strong><span data-i18n="statRooms">Ambientes</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="plan-frame">
+        <img src="planta-tiny-house.png" alt="Planta baixa da Tiny House 24">
+        <div class="image-caption">
+          <span data-i18n="planCaption">Planta conceitual • 24 m²</span>
+          <span>8,00 m × 3,00 m</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="video-showcase" id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Conheça por dentro</span>
+      <h2>Veja sua próxima casa em movimento.</h2>
+      <p>Assista ao vídeo demonstrativo da Tiny House 24.</p>
+    </div>
+
+    <div class="video-shell">
+      <video id="tiny-house-video" controls playsinline preload="metadata">
+        <source id="tiny-house-video-source" src="tiny-house-pt.mp4" type="video/mp4">
+        Seu navegador não consegue reproduzir este vídeo.
+      </video>
+    </div>
+
+    
+  </div>
+</section>
+
+
+<section class="floorplan-section" id="planta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="planEyebrow">Conheça a distribuição</span>
+      <h2 data-i18n="planTitle">Uma planta pensada para aproveitar cada metro.</h2>
+      <p data-i18n="planText">Veja a organização dos 24 m²: cozinha, sala de estar, quarto e banheiro em extremidades bem definidas.</p>
+    </div>
+    <div class="floorplan-frame">
+      <img src="planta-tiny-house.png" alt="Planta baixa ilustrada da Tiny House de 24 m²">
+    </div>
+    <p class="floorplan-note" data-i18n="planNote">Planta conceitual • 8,00 m × 3,00 m • Área total de 24 m²</p>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><strong>24 m²</strong><span data-i18n="statTotal">Área total planejada</span></div>
+    <div class="stat"><strong>8 m</strong><span data-i18n="statLength">De comprimento</span></div>
+    <div class="stat"><strong>3 m</strong><span data-i18n="statWidth">De largura</span></div>
+    <div class="stat"><strong>4</strong><span data-i18n="statFunctional">Ambientes funcionais</span></div>
+  </div>
+</div>
+
+<section class="features" id="projeto">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="conceptEyebrow">O conceito</span>
+      <h2 data-i18n-html="conceptTitle">Compacta no tamanho.<br>Completa no essencial.</h2>
+      <p data-i18n="conceptText">Uma proposta de moradia que combina praticidade, conforto e uma estética natural. Os ambientes se conectam de forma inteligente para tornar o dia a dia mais simples.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">⌂</div>
+        <h3 data-i18n="feature1Title">Design integrado</h3>
+        <p data-i18n="feature1Text">Sala e cozinha conectadas para ampliar a sensação de espaço e facilitar a convivência.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">☀</div>
+        <h3 data-i18n="feature2Title">Luz natural</h3>
+        <p data-i18n="feature2Text">Janelas distribuídas para favorecer a iluminação e a ventilação dos ambientes.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">▤</div>
+        <h3 data-i18n="feature3Title">Conforto essencial</h3>
+        <p data-i18n="feature3Text">Quarto com cama de casal e espaços pensados para uma rotina prática.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">✧</div>
+        <h3 data-i18n="feature4Title">Estilo atemporal</h3>
+        <p data-i18n="feature4Text">Madeira, tons neutros e elementos naturais criam uma atmosfera acolhedora.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ambientes">
+  <div class="wrap layout-grid">
+    <div class="layout-card">
+      <img src="planta-tiny-house.png" alt="Vista superior da planta da Tiny House">
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="roomsEyebrow">Cada metro importa</span>
+      <div class="section-head">
+        <h2 data-i18n="roomsTitle">Um lugar para cada momento.</h2>
+        <p data-i18n="roomsText">Os quatro ambientes foram organizados ao longo de uma planta retangular de 8 por 3 metros.</p>
+      </div>
+
+      <div class="room-list">
+        <div class="room"><span class="room-num">01</span><div><h3 data-i18n="room1Title">Cozinha • 3,00 × 2,50 m</h3><p data-i18n="room1Text">Pia, fogão, geladeira e mesa para as refeições.</p></div></div>
+        <div class="room"><span class="room-num">02</span><div><h3 data-i18n="room2Title">Sala de estar • 2,50 × 2,50 m</h3><p data-i18n="room2Text">Espaço integrado e confortável para relaxar.</p></div></div>
+        <div class="room"><span class="room-num">03</span><div><h3 data-i18n="room3Title">Quarto • 2,50 × 2,50 m</h3><p data-i18n="room3Text">Área de descanso com cama de casal.</p></div></div>
+        <div class="room"><span class="room-num">04</span><div><h3 data-i18n="room4Title">Banheiro • 1,50 × 2,50 m</h3><p data-i18n="room4Text">Ambiente separado, posicionado na extremidade oposta à cozinha.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="highlight" id="diferenciais">
+  <div class="wrap highlight-grid">
+    <div>
+      <span class="eyebrow" data-i18n="detailEyebrow">Pensada nos detalhes</span>
+      <h2 data-i18n="detailTitle">Privacidade e funcionalidade em equilíbrio.</h2>
+      <p data-i18n="detailText">A distribuição longitudinal separa o banheiro da cozinha e organiza a circulação entre as áreas sociais e íntimas.</p>
+      <ul class="checks">
+        <li><span class="check">✓</span><span data-i18n="check1">Ambientes bem distribuídos</span></li>
+        <li><span class="check">✓</span><span data-i18n="check2">Maior separação entre áreas</span></li>
+        <li><span class="check">✓</span><span data-i18n="check3">Banheiro na extremidade oposta à cozinha</span></li>
+        <li><span class="check">✓</span><span data-i18n="check4">Projeto compacto e funcional</span></li>
+      </ul>
+    </div>
+    <div class="quote-card">
+      <blockquote data-i18n="quote">“O essencial não precisa de muito espaço. Precisa ser bem pensado.”</blockquote>
+      <small data-i18n="quoteSmall">Uma nova maneira de imaginar o morar.</small>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contato">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="ctaEyebrow">Seu próximo projeto começa aqui</span>
+    <h2 data-i18n="ctaTitle">Vamos conversar sobre a sua Tiny House?</h2>
+    <p data-i18n="ctaText">Gostou da proposta? Entre em contato para saber mais sobre o conceito, possibilidades de personalização e próximos passos.</p>
+    <a class="btn" id="contact-whatsapp" href="#" target="_blank" rel="noopener" data-i18n="ctaButton">Solicitar informações ↗</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <a class="brand" href="#inicio">TINY HOUSE <span>24</span></a>
+    <div class="disclaimer" data-i18n="disclaimer">Projeto conceitual. Para execução, as dimensões, estrutura, instalações e exigências legais devem ser avaliadas e adequadas por profissionais habilitados.</div>
+    <span>© 2026 • Tiny House 24</span>
+  </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+<a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <span class="whatsapp-tooltip" id="whatsapp-tooltip">Fale conosco pelo WhatsApp</span>
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M16 .5C7.45.5.5 7.45.5 16c0 2.73.72 5.4 2.08 7.75L.4 31.5l7.95-2.08A15.43 15.43 0 0 0 16 31.5c8.55 0 15.5-6.95 15.5-15.5S24.55.5 16 .5zm0 28.2c-2.36 0-4.68-.64-6.7-1.85l-.48-.29-4.72 1.24 1.26-4.6-.31-.49A12.65 12.65 0 0 1 3.1 16C3.1 8.88 8.88 3.1 16 3.1S28.9 8.88 28.9 16 23.12 28.7 16 28.7zm6.95-9.48c-.38-.19-2.25-1.11-2.6-1.24-.35-.13-.6-.19-.85.19-.25.38-.98 1.24-1.2 1.49-.22.25-.44.28-.82.09-.38-.19-1.6-.59-3.05-1.88-1.13-1.01-1.89-2.26-2.11-2.64-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.07-.47-.03-.66-.1-.19-.85-2.05-1.16-2.81-.31-.74-.62-.64-.85-.65h-.73c-.25 0-.66.09-1.01.47-.35.38-1.33 1.3-1.33 3.17s1.36 3.68 1.55 3.93c.19.25 2.68 4.09 6.49 5.74.91.39 1.62.63 2.17.81.91.29 1.74.25 2.39.15.73-.11 2.25-.92 2.57-1.81.32-.89.32-1.65.22-1.81-.09-.16-.34-.25-.72-.44z"/>
+  </svg>
+</a>
+
+<script>
+const translations = {
+pt: {
+title:"Tiny House 24 | Viva o essencial",
+navProject:"O projeto",navVideo:"Vídeo",navPlan:"Planta",navSpaces:"Ambientes",navFeatures:"Diferenciais",
+headerCta:"Tenho interesse ↗",
+heroEyebrow:"Morar bem • viver leve",
+heroTitle:"Menos espaço.<br><em>Mais vida.</em>",
+heroText:"Uma casa compacta, acolhedora e inteligente. Cada ambiente foi pensado para aproveitar o espaço sem abrir mão do conforto.",
+heroButton:"Quero saber mais →",heroExplore:"Conheça o projeto",
+statArea:"Área total",statDimensions:"Dimensões",statRooms:"Ambientes",
+planCaption:"Planta conceitual • 24 m²",
+videoEyebrow:"Conheça por dentro",videoTitle:"Veja sua próxima casa em movimento.",
+videoText:"Assista ao vídeo demonstrativo e imagine as possibilidades de viver em um espaço compacto, acolhedor e funcional.",
+videoCaption:"Tiny House 24 • Vídeo demonstrativo do projeto",
+planEyebrow:"Conheça a distribuição",planTitle:"Uma planta pensada para aproveitar cada metro.",
+planText:"Veja a organização dos 24 m²: cozinha, sala de estar, quarto e banheiro em extremidades bem definidas.",
+planNote:"Planta conceitual • 8,00 m × 3,00 m • Área total de 24 m²",
+statTotal:"Área total planejada",statLength:"De comprimento",statWidth:"De largura",statFunctional:"Ambientes funcionais",
+conceptEyebrow:"O conceito",conceptTitle:"Compacta no tamanho.<br>Completa no essencial.",
+conceptText:"Uma proposta de moradia que combina praticidade, conforto e uma estética natural. Os ambientes se conectam de forma inteligente para tornar o dia a dia mais simples.",
+feature1Title:"Design integrado",feature1Text:"Sala e cozinha conectadas para ampliar a sensação de espaço e facilitar a convivência.",
+feature2Title:"Luz natural",feature2Text:"Janelas distribuídas para favorecer a iluminação e a ventilação dos ambientes.",
+feature3Title:"Conforto essencial",feature3Text:"Quarto com cama de casal e espaços pensados para uma rotina prática.",
+feature4Title:"Estilo atemporal",feature4Text:"Madeira, tons neutros e elementos naturais criam uma atmosfera acolhedora.",
+roomsEyebrow:"Cada metro importa",roomsTitle:"Um lugar para cada momento.",
+roomsText:"Os quatro ambientes foram organizados ao longo de uma planta retangular de 8 por 3 metros.",
+room1Title:"Cozinha • 3,00 × 2,50 m",room1Text:"Pia, fogão, geladeira e mesa para as refeições.",
+room2Title:"Sala de estar • 2,50 × 2,50 m",room2Text:"Espaço integrado e confortável para relaxar.",
+room3Title:"Quarto • 2,50 × 2,50 m",room3Text:"Área de descanso com cama de casal.",
+room4Title:"Banheiro • 1,50 × 2,50 m",room4Text:"Ambiente separado, posicionado na extremidade oposta à cozinha.",
+detailEyebrow:"Pensada nos detalhes",detailTitle:"Privacidade e funcionalidade em equilíbrio.",
+detailText:"A distribuição longitudinal separa o banheiro da cozinha e organiza a circulação entre as áreas sociais e íntimas.",
+check1:"Ambientes bem distribuídos",check2:"Maior separação entre áreas",check3:"Banheiro na extremidade oposta à cozinha",check4:"Projeto compacto e funcional",
+quote:"“O essencial não precisa de muito espaço. Precisa ser bem pensado.”",
+quoteSmall:"Uma nova maneira de imaginar o morar.",
+ctaEyebrow:"Seu próximo projeto começa aqui",ctaTitle:"Vamos conversar sobre a sua Tiny House?",
+ctaText:"Gostou da proposta? Entre em contato para saber mais sobre o conceito, possibilidades de personalização e próximos passos.",
+ctaButton:"Solicitar informações ↗",
+disclaimer:"Projeto conceitual. Para execução, as dimensões, estrutura, instalações e exigências legais devem ser avaliadas e adequadas por profissionais habilitados.",
+whatsapp:"Fale conosco pelo WhatsApp",
+waMessage:"Olá! Tenho interesse na Tiny House 24."
+},
+en: {
+title:"Tiny House 24 | Live with less, live more",
+navProject:"The project",navVideo:"Video",navPlan:"Floor plan",navSpaces:"Spaces",navFeatures:"Features",
+headerCta:"Get in touch ↗",
+heroEyebrow:"Live well • live lightly",
+heroTitle:"Less space.<br><em>More life.</em>",
+heroText:"A compact, welcoming and smart home. Every space is designed to make the most of the floor area without giving up comfort.",
+heroButton:"Learn more →",heroExplore:"Explore the project",
+statArea:"Total area",statDimensions:"Dimensions",statRooms:"Spaces",
+planCaption:"Concept floor plan • 24 m²",
+videoEyebrow:"Take a look inside",videoTitle:"See your next home in motion.",
+videoText:"Watch the project video and imagine the possibilities of living in a compact, welcoming and functional space.",
+videoCaption:"Tiny House 24 • Project presentation video",
+planEyebrow:"Explore the layout",planTitle:"A floor plan designed to make every meter count.",
+planText:"Explore the 24 m² layout: kitchen, living room, bedroom and bathroom arranged in clearly defined areas.",
+planNote:"Concept floor plan • 8.00 m × 3.00 m • Total area: 24 m²",
+statTotal:"Planned total area",statLength:"In length",statWidth:"In width",statFunctional:"Functional spaces",
+conceptEyebrow:"The concept",conceptTitle:"Small in size.<br>Complete in the essentials.",
+conceptText:"A housing concept that combines practicality, comfort and a natural aesthetic. The spaces connect intelligently to make everyday life simpler.",
+feature1Title:"Integrated design",feature1Text:"Connected living room and kitchen create a greater sense of space and make everyday living easier.",
+feature2Title:"Natural light",feature2Text:"Strategically placed windows help bring natural light and ventilation into the home.",
+feature3Title:"Essential comfort",feature3Text:"A double bedroom and thoughtfully planned spaces for practical everyday living.",
+feature4Title:"Timeless style",feature4Text:"Wood, neutral tones and natural elements create a warm, welcoming atmosphere.",
+roomsEyebrow:"Every meter matters",roomsTitle:"A place for every moment.",
+roomsText:"The four spaces are arranged along an 8-by-3-meter rectangular floor plan.",
+room1Title:"Kitchen • 3.00 × 2.50 m",room1Text:"Sink, stove, refrigerator and dining table.",
+room2Title:"Living room • 2.50 × 2.50 m",room2Text:"An integrated, comfortable space to relax.",
+room3Title:"Bedroom • 2.50 × 2.50 m",room3Text:"A restful space with a double bed.",
+room4Title:"Bathroom • 1.50 × 2.50 m",room4Text:"A separate room located at the opposite end from the kitchen.",
+detailEyebrow:"Thoughtfully designed",detailTitle:"Privacy and functionality in balance.",
+detailText:"The lengthwise layout keeps the bathroom separate from the kitchen and organizes circulation between social and private areas.",
+check1:"Well-planned spaces",check2:"Clear separation between areas",check3:"Bathroom at the opposite end from the kitchen",check4:"Compact and functional design",
+quote:"“The essentials do not require a lot of space. They require thoughtful design.”",
+quoteSmall:"A new way to imagine living.",
+ctaEyebrow:"Your next project starts here",ctaTitle:"Shall we talk about your Tiny House?",
+ctaText:"Like the concept? Get in touch to learn more about the project, customization possibilities and next steps.",
+ctaButton:"Request information ↗",
+disclaimer:"Concept design. Before construction, dimensions, structure, utilities and legal requirements must be reviewed and approved by qualified professionals.",
+whatsapp:"Contact us on WhatsApp",
+waMessage:"Hello! I am interested in the Tiny House 24."
+}
+};
+
+function setLanguage(lang){
+  const t=translations[lang]||translations.pt;
+  document.documentElement.lang=lang==="en"?"en":"pt-BR";
+  document.title=t.title;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.dataset.i18n;
+    if(t[key]!==undefined)el.textContent=t[key];
+  });
+
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+    const key=el.dataset.i18nHtml;
+    if(t[key]!==undefined)el.innerHTML=t[key];
+  });
+
+  const message=encodeURIComponent(t.waMessage);
+  const whatsappURL="https://wa.me/5511967969467?text="+message;
+
+  ["header-cta","hero-whatsapp","contact-whatsapp","whatsapp-float"].forEach(id=>{
+    document.getElementById(id).href=whatsappURL;
+  });
+
+  document.getElementById("whatsapp-tooltip").textContent=t.whatsapp;
+
+  document.querySelectorAll(".lang-btn").forEach(button=>{
+    const active=button.dataset.lang===lang;
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-pressed",String(active));
+  });
+
+  try{localStorage.setItem("tinyhouse-language",lang)}catch(e){}
+}
+
+document.querySelectorAll(".lang-btn").forEach(button=>{
+  button.addEventListener("click",()=>setLanguage(button.dataset.lang));
+});
+
+document.querySelectorAll("#navlinks a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("navlinks").classList.remove("open");
+  });
+});
+
+let savedLanguage="pt";
+try{savedLanguage=localStorage.getItem("tinyhouse-language")||"pt"}catch(e){}
+setLanguage(savedLanguage);
+
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+  button.addEventListener("click", function() {
+
+    const idioma = this.dataset.lang;
+
+    const video = document.getElementById("tiny-house-video");
+    const fonte = document.getElementById("tiny-house-video-source");
+    const legenda = document.getElementById("video-caption");
+
+    const arquivo = idioma === "en"
+      ? "tiny-house-en.mp4"
+      : "tiny-house-pt.mp4";
+
+    video.pause();
+    fonte.src = arquivo;
+    video.load();
+
+    legenda.textContent = idioma === "en"
+      ? "Tiny House 24 • English presentation"
+      : "Tiny House 24 • Apresentação em português";
+
+  });
+});
+
+</script>
+</body>
+</html>
